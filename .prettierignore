@@ -1,0 +1,22 @@
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html
+**/*.eot
+**/*.ttf
+**/*.woff
+
+# dependencies
+/node_modules
+/package.json
+
+# misc
+.DS_Store
+
+# next
+.next
+/bundles
+
+# IDE
+.idea
+.vscode

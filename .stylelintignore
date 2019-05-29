@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+
+# misc
+.DS_Store
+
+# next
+.next
+next.config.js
+/bundles
+
+# IDE
+.idea
+.vscode
