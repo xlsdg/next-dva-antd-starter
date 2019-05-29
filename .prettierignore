@@ -15,7 +15,8 @@
 
 # next
 .next
-/bundles
+bundles
+out
 
 # IDE
 .idea

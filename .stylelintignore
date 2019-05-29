@@ -6,8 +6,8 @@
 
 # next
 .next
-next.config.js
-/bundles
+bundles
+out
 
 # IDE
 .idea

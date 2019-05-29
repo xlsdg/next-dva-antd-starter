@@ -1,12 +1,13 @@
 # dependencies
-/node_modules
+node_modules
 
 # misc
 .DS_Store
 
 # next
 .next
-/bundles
+bundles
+out
 next.config.js
 
 # IDE

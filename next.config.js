@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const withLess = require('@zeit/next-less');
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
-// const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER } = require('next/constants');
+// const { PHASE_PRODUCTION_BUILD, PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER } = require('next/constants');
 const LodashWebpackPlugin = require('lodash-webpack-plugin');
 
 const Theme = require('./config/theme');
@@ -14,6 +14,8 @@ if (typeof require !== 'undefined') {
 
 module.exports = (phase, { defaultConfig }) => {
   let config = {};
+
+  const isBuildForProd = process.env.BUILD_ENV === 'prod';
   const setConfig = cfg => _.assign({},/* defaultConfig, */config, cfg);
 
   // if (phase === PHASE_DEVELOPMENT_SERVER) {
@@ -24,7 +26,16 @@ module.exports = (phase, { defaultConfig }) => {
   //   config = setConfig({});
   // }
 
+  // config = setConfig({
+  //   env: {},
+  // });
+
   config = setConfig({
+    // cssModules: true,
+    // cssLoaderOptions: {
+    //   importLoaders: 1,
+    //   localIdentName: '[local]--[hash:base64:5]'
+    // },
     lessLoaderOptions: {
       javascriptEnabled: true,
       modifyVars: Theme,
@@ -37,7 +48,7 @@ module.exports = (phase, { defaultConfig }) => {
 
       config.plugins.push(
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new webpack.DefinePlugin(Define),
+        new webpack.DefinePlugin(Define(isBuildForProd)),
         new LodashWebpackPlugin({
           collections: true,
           paths: true,

@@ -6,7 +6,7 @@ import withRedux from 'next-redux-wrapper';
 import Dva from '@/utils/dva';
 
 class NextApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps({ Component, /* router, */ ctx }) {
     let pageProps = {};
 
     if (Component.getInitialProps) {
@@ -18,7 +18,7 @@ class NextApp extends App {
 
   render() {
     const that = this;
-    const { Component, pageProps, store } = that.props;
+    const { Component, store, /* err, router, */ pageProps } = that.props;
 
     return (
       <Container>

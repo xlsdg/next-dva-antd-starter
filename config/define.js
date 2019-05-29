@@ -1,8 +1,11 @@
 const _ = require('lodash');
 
-module.exports = _.mapValues(
-  {
-    BASE_URL: 'https://www.google.com/',
-  },
-  v => JSON.stringify(v)
-);
+const PROD = {
+  BASE_URL: 'https://www.google.com/',
+};
+
+const TEST = {
+  BASE_URL: 'https://www.baidu.com/',
+};
+
+module.exports = (isProd = true) => _.mapValues(isProd ? PROD : TEST, v => JSON.stringify(v));

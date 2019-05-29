@@ -65,7 +65,7 @@ Page.getInitialProps = ({ store }) => {
   return {};
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     loading: state.loading,
     [NS_HOME]: state[NS_HOME],
