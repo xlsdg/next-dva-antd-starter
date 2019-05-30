@@ -1,52 +1,118 @@
 import { connect } from 'react-redux';
-import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button } from 'antd';
+import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button, List, Table } from 'antd';
 
 import { NS_HOME } from '@/redux/namespaces/index';
+import { TYPE_ADD_TODO, TYPE_GET_REPOSITORIES } from '@/redux/types/home';
 import Action from '@/redux/actions/home';
 
 import styles from './index.less';
 
-const FormItem = Form.Item;
-const Option = Select.Option;
-
 function Page(props) {
+  const { todo, repositories } = props[NS_HOME];
+
+  const onSubmit = e => {
+    e.preventDefault();
+    props.dispatch(Action[TYPE_GET_REPOSITORIES]({ language: 'javascript', since: 'weekly' }, NS_HOME));
+  };
+
+  const columns = [
+    {
+      title: 'author',
+      dataIndex: 'author',
+      key: 'author',
+    },
+    {
+      title: 'currentPeriodStars',
+      dataIndex: 'currentPeriodStars',
+      key: 'currentPeriodStars',
+    },
+    {
+      title: 'description',
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: 'forks',
+      dataIndex: 'forks',
+      key: 'forks',
+    },
+    {
+      title: 'language',
+      dataIndex: 'language',
+      key: 'language',
+    },
+    {
+      title: 'name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'stars',
+      dataIndex: 'stars',
+      key: 'stars',
+    },
+    {
+      title: 'url',
+      dataIndex: 'url',
+      key: 'url',
+    },
+  ];
+
   return (
     <div className={styles.container}>
-      <Form layout="horizontal">
-        <FormItem label="Input Number" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-          <InputNumber size="large" min={1} max={10} defaultValue={3} name="inputNumber" />
+      <Form layout="horizontal" onSubmit={onSubmit}>
+        <Form.Item label="Input Number" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+          <InputNumber
+            className={styles.inputNumber}
+            size="large"
+            min={1}
+            max={10}
+            defaultValue={3}
+            name="inputNumber"
+          />
           <a href={BASE_URL}>Link</a>
-        </FormItem>
+        </Form.Item>
 
-        <FormItem label="Switch" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+        <Form.Item label="Switch" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
           <Switch defaultChecked name="switch" />
-        </FormItem>
+        </Form.Item>
 
-        <FormItem label="Slider" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+        <Form.Item label="Slider" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
           <Slider defaultValue={70} />
-        </FormItem>
+        </Form.Item>
 
-        <FormItem label="Select" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-          <Select size="large" defaultValue="lucy" name="select">
-            <Option value="jack">jack</Option>
-            <Option value="lucy">lucy</Option>
-            <Option value="disabled" disabled>
+        <Form.Item label="Select" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+          <Select className={styles.select} size="large" defaultValue="lucy" name="select">
+            <Select.Option value="jack">jack</Select.Option>
+            <Select.Option value="lucy">lucy</Select.Option>
+            <Select.Option value="disabled" disabled>
               disabled
-            </Option>
-            <Option value="yiminghe">yiminghe</Option>
+            </Select.Option>
+            <Select.Option value="yiminghe">yiminghe</Select.Option>
           </Select>
-        </FormItem>
+        </Form.Item>
 
-        <FormItem label="DatePicker" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+        <Form.Item label="DatePicker" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
           <DatePicker name="startDate" />
-        </FormItem>
-        <FormItem wrapperCol={{ span: 8, offset: 8 }}>
+        </Form.Item>
+        <Form.Item wrapperCol={{ span: 8, offset: 8 }}>
           <Button size="large" type="primary" htmlType="submit">
             OK
           </Button>
-          <Button size="large">Cancel</Button>
-        </FormItem>
+          <Button className={styles.cancel} size="large">
+            Cancel
+          </Button>
+        </Form.Item>
       </Form>
+      <Table dataSource={repositories} columns={columns} />
+      <List
+        className={styles.todo}
+        size="small"
+        bordered
+        header={<div>Todos</div>}
+        dataSource={todo}
+        renderItem={item => <List.Item>{item}</List.Item>}
+      />
     </div>
   );
 }
@@ -55,8 +121,9 @@ function Page(props) {
 
 // Page.defaultProps = {};
 
-Page.getInitialProps = ({ store }) => {
-  store.dispatch(Action.addTodo({ todo: 'Good job!' }, NS_HOME));
+Page.getInitialProps = async ({ store }) => {
+  await store.dispatch(Action[TYPE_ADD_TODO]({ todo: ['01', '02', '03'] }, NS_HOME));
+  // await store.dispatch(Action[TYPE_GET_REPOSITORIES]({ language: 'javascript', since: 'weekly' }, NS_HOME));
   return {};
 };
 

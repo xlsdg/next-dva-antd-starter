@@ -16,14 +16,12 @@ function createDvaStore(initialState = {}) {
     // onError: (error, dispatch) => {
     //   error.preventDefault();
     // },
-    // onAction: [routerMiddleware],
-    // onStateChange: state => {},
+    // onAction: [], // 注册 redux 中间件
+    // onStateChange: state => {}, // 同步 state 到 localStorage
     // onReducer: reducer => {},
     // onEffect: effect => {},
     // onHmr: () => {},
-    // extraReducers: {
-    //   router: routerReducer,
-    // },
+    // extraReducers: {},
     // extraEnhancers: [],
   });
 

@@ -9,7 +9,15 @@ class NextDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <meta name="renderer" content="webkit" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+          <meta httpEquiv="x-dns-prefetch-control" content="on" />
+
+          <meta httpEquiv="Cache-Control" content="no-cache,no-store,must-revalidate" />
+          <meta httpEquiv="Pragma" content="no-cache" />
+          <meta httpEquiv="Expires" content="0" />
+        </Head>
         <body>
           <Main />
           <NextScript />

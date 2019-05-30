@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 
 import Dva from '@/utils/dva';
+import { createUrl } from '@/utils/helper';
 
 class NextApp extends App {
   static async getInitialProps({ Component, /* router, */ ctx }) {
@@ -18,12 +19,13 @@ class NextApp extends App {
 
   render() {
     const that = this;
-    const { Component, store, /* err, router, */ pageProps } = that.props;
+    const { /* err, */ Component, store, router, pageProps } = that.props;
+    const url = createUrl(router);
 
     return (
       <Container>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Component {...pageProps} url={url} />
         </Provider>
       </Container>
     );
