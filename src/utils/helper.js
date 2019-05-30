@@ -8,6 +8,10 @@ export function getToken() {
   return '';
 }
 
+export function getLocale() {
+  return 'zh-CN';
+}
+
 export function hasString(str) {
   return _.isString(str) && !_.isEmpty(str);
 }
