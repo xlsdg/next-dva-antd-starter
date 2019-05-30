@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { connect } from 'react-redux';
 import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button, List, Table } from 'antd';
 
@@ -60,6 +61,9 @@ function Page(props) {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Hello</title>
+      </Head>
       <Form layout="horizontal" onSubmit={onSubmit}>
         <Form.Item label="Input Number" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
           <InputNumber
@@ -104,7 +108,7 @@ function Page(props) {
           </Button>
         </Form.Item>
       </Form>
-      <Table dataSource={repositories} columns={columns} />
+      <Table rowKey="url" dataSource={repositories} columns={columns} />
       <List
         className={styles.todo}
         size="small"

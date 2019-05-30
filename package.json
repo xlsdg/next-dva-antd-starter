@@ -8,6 +8,7 @@
     "dva-core": "^1.6.0-beta.3",
     "dva-immer": "^0.4.3",
     "dva-loading": "^3.0.4",
+    "express": "^4.17.1",
     "lodash": "^4.17.11",
     "next": "^8.1.1-canary.40",
     "next-compose-plugins": "^2.2.0",
@@ -53,10 +54,10 @@
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build src",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build src",
     "build": "cross-env BUILD_ENV=prod next build src",
-    "deploy:local": "npm run dev && next start src",
-    "deploy:prod": "npm run build && next start src",
+    "deploy:local": "npm run dev && cross-env NODE_ENV=production node server.js",
+    "deploy:prod": "npm run build && cross-env NODE_ENV=production node server.js",
     "dev": "cross-env BUILD_ENV=local next build src",
-    "start": "next src"
+    "start": "node server.js"
   },
   "version": "0.1.0"
 }
