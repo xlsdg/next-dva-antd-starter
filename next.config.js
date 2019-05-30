@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const withLess = require('@zeit/next-less');
+const withLess = require('next-less-v2');
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 // const { PHASE_PRODUCTION_BUILD, PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER } = require('next/constants');
 const LodashWebpackPlugin = require('lodash-webpack-plugin');
@@ -31,11 +31,11 @@ module.exports = (phase, { defaultConfig }) => {
   // });
 
   config = setConfig({
-    // cssModules: true,
-    // cssLoaderOptions: {
-    //   importLoaders: 1,
-    //   localIdentName: '[local]--[hash:base64:5]'
-    // },
+    cssModules: true,
+    cssLoaderOptions: {
+      importLoaders: 1,
+      localIdentName: '[local]--[hash:base64:5]'
+    },
     lessLoaderOptions: {
       javascriptEnabled: true,
       modifyVars: Theme,

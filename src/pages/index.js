@@ -4,19 +4,14 @@ import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button } from 'a
 import { NS_HOME } from '@/redux/namespaces/index';
 import Action from '@/redux/actions/home';
 
+import styles from './index.less';
+
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 function Page(props) {
   return (
-    <div className="container">
-      <style jsx>{`
-        .container {
-          padding: 0;
-          margin: 0;
-          background-color: transparent;
-        }
-      `}</style>
+    <div className={styles.container}>
       <Form layout="horizontal">
         <FormItem label="Input Number" labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
           <InputNumber size="large" min={1} max={10} defaultValue={3} name="inputNumber" />

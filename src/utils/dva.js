@@ -1,5 +1,3 @@
-import 'regenerator-runtime/runtime';
-
 import _ from 'lodash';
 import { create } from 'dva-core';
 import DvaLoading from 'dva-loading';

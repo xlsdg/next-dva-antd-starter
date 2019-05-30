@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "antd": "^3.19.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
@@ -9,6 +10,8 @@
     "dva-loading": "^3.0.4",
     "lodash": "^4.17.11",
     "next": "^8.1.1-canary.40",
+    "next-compose-plugins": "^2.2.0",
+    "next-less-v2": "^0.1.1",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
@@ -17,21 +20,18 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
-    "regenerator-runtime": "^0.13.2",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-conventional": "^7.6.0",
-    "@zeit/next-bundle-analyzer": "^0.1.2",
-    "@zeit/next-less": "^1.0.1",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.2",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^3.2.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-alloy": "^1.4.2",
+    "eslint-config-alloy": "^2.0.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-plugin-prettier": "^3.1.0",
@@ -52,10 +52,11 @@
     "analyze": "cross-env BUNDLE_ANALYZE=both next build src",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build src",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build src",
-    "dev": "cross-env BUILD_ENV=local next build src",
     "build": "cross-env BUILD_ENV=prod next build src",
-    "start": "next src",
-    "run": "next start src"
+    "deploy:local": "npm run dev && next start src",
+    "deploy:prod": "npm run build && next start src",
+    "dev": "cross-env BUILD_ENV=local next build src",
+    "start": "next src"
   },
   "version": "0.1.0"
 }
