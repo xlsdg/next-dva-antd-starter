@@ -5,11 +5,7 @@ import DvaImmer from 'dva-immer';
 
 import getModels from '@/redux/models/index';
 
-import { isServer } from '@/utils/helper';
-
-const NEXT_DVA_STORE = '__NEXT_DVA_STORE__';
-
-function createDvaStore(initialState = {}) {
+export default function createDvaStore(initialState = {}) {
   const app = create({
     // history: ,
     initialState,
@@ -33,17 +29,4 @@ function createDvaStore(initialState = {}) {
   app.start();
 
   return app._store;
-}
-
-export default function getOrCreateStore(initialState) {
-  const store = createDvaStore(initialState);
-  if (isServer()) {
-    return store;
-  }
-
-  if (!window[NEXT_DVA_STORE]) {
-    window[NEXT_DVA_STORE] = store;
-  }
-
-  return window[NEXT_DVA_STORE];
 }

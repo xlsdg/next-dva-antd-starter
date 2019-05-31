@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 
-import Dva from '@/utils/dva';
+import createDvaStore from '@/utils/dva';
 import { createUrl } from '@/utils/helper';
 
 class NextApp extends App {
@@ -32,4 +32,4 @@ class NextApp extends App {
   }
 }
 
-export default withRedux(Dva)(NextApp);
+export default withRedux(createDvaStore)(NextApp);
