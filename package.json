@@ -1,16 +1,16 @@
 {
   "dependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.2",
-    "antd": "^3.20.1",
+    "antd": "^3.20.2",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.15",
     "dva-core": "^1.6.0-beta.5",
-    "dva-immer": "^0.4.10",
-    "dva-loading": "^3.0.11",
+    "dva-immer": "^0.4.11",
+    "dva-loading": "^3.0.12",
     "express": "^4.17.1",
     "lodash": "^4.17.14",
-    "next": "^9.0.1-canary.0",
+    "next": "^9.0.1",
     "next-compose-plugins": "^2.2.0",
     "next-less-v2": "^0.1.1",
     "next-redux-wrapper": "^3.0.0-alpha.3",
@@ -46,7 +46,7 @@
     "stylelint": "^10.1.0",
     "stylelint-config-prettier": "^5.2.0",
     "stylelint-config-standard": "^18.3.0",
-    "stylelint-order": "^3.0.0"
+    "stylelint-order": "^3.0.1"
   },
   "private": true,
   "scripts": {
