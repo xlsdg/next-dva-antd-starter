@@ -1,5 +1,11 @@
+/config
+
 # dependencies
-node_modules
+/node_modules
+
+# production
+/dist
+/public
 
 # misc
 .DS_Store
